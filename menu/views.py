@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core import serializers
 from .models import Pizza
 
 # Create your views here.
@@ -17,3 +18,8 @@ def index(request):
     pizzas = Pizza.objects.all().order_by('price') 
     # gets all objects of Pizza ordered by the values in the field price
     return render(request,'menu/index.html',{'pizzas':pizzas})
+
+def api_get_pizzas(request):
+    pizzas = Pizza.objects.all().order_by('price') # gets all pizza objects
+    json = serializers.serialize("json", pizzas) # converts objects to json format
+    return HttpResponse(json) # returns json object as a HttpResponse

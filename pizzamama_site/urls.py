@@ -22,5 +22,6 @@ urlpatterns = [
     # we create the url for the menu path and with the include method (default method)
     # by importing, we link the urls file as a string. menu = app name, urls = file name
     path('menu/', include('menu.urls')),
+    path('api/', include('menu.api_urls')),
     path('', include('main.urls')), # this is for the mainpage, app added to the project
 ]
